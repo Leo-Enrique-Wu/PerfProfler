@@ -254,7 +254,7 @@ int main(int argc, char** argv) {
     long length;
     caddr_t start, end;
     const PAPI_exe_info_t *prginfo;
-    unsigned short *profbuf;
+    unsigned short *profbuf[1];
     unsigned long plength;
     unsigned scale;
     int bucket;
@@ -283,12 +283,12 @@ int main(int argc, char** argv) {
     bucket = PAPI_PROFIL_BUCKET_16;
     plength = (unsigned long)length;
     blength = prof_size( plength, scale, bucket, &num_buckets );
-    profbuf = (unsigned short *)malloc(length*sizeof(unsigned short));
+    profbuf[0] = (unsigned short *)malloc(length*sizeof(unsigned short));
     
-    if (profbuf == NULL)
+    if (profbuf[0] == NULL)
         handle_error(1);
         
-    memset(profbuf,0x00,length*sizeof(unsigned short));
+    memset(profbuf[0],0x00,length*sizeof(unsigned short));
     
     if (PAPI_create_eventset(&EventSet) != PAPI_OK)
         handle_error(retval);
@@ -297,7 +297,7 @@ int main(int argc, char** argv) {
     if (PAPI_add_event(EventSet, PAPI_FP_INS) != PAPI_OK)
         handle_error(retval);
     
-    if (PAPI_profil(profbuf, length, start, 65536, EventSet, 
+    if (PAPI_profil(profbuf[0], length, start, 65536, EventSet, 
     	PAPI_FP_INS, 1000000, PAPI_PROFIL_POSIX | PAPI_PROFIL_BUCKET_16) != PAPI_OK)
         handle_error(1);
     
@@ -335,7 +335,7 @@ int main(int argc, char** argv) {
     free(b);
     free(c);
     
-    free(profbuf);
+    free(profbuf[0]);
     
   // }
 
