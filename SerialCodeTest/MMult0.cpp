@@ -43,16 +43,18 @@ void MMult0( long m, long n, long k, double *a,
 
 int main(int argc, char** argv) {
     
-    
+  /*
   const long NREPEATS = 50;
   
   const long PFIRST = 20;
   const long PLAST = 600;
   const long PINC = 20;
+  */
 
   printf(" Dimension       Time    Gflop/s       GB/s\n");
-  for (long p = PFIRST; p < PLAST; p += PINC) {
+  // for (long p = PFIRST; p < PLAST; p += PINC) {
     
+    long p = 400;
     long m = p, n = p, k = p;
     
     // alloc memory
@@ -93,7 +95,7 @@ int main(int argc, char** argv) {
     free(b);
     free(c);
     
-  }
+  // }
 
   return 0;
     
