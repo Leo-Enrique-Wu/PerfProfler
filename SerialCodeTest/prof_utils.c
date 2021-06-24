@@ -163,7 +163,7 @@ prof_check( int n, int bucket, int num_buckets )
    and the length (in bytes) of the profile buffer is buckets * bucket size.
    */
 unsigned long
-prof_size( unsigned long plength, unsigned scale, int bucket, int *num_buckets )
+prof_size( unsigned long plength, unsigned int scale, int bucket, int *num_buckets )
 {
 	unsigned long blength;
 	long long llength = ( ( long long ) plength * scale );
