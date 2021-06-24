@@ -85,9 +85,10 @@ int main(int argc, char** argv) {
 
     if ((prginfo = PAPI_get_executable_info()) == NULL)
         handle_error(1);
-        
-    start = (unsigned long)prginfo->address_info->text_start;
-    end = (unsigned long)prginfo->address_info->text_end;
+    
+    PAPI_address_map_t address_info = prginfo->address_info
+    start = (unsigned long)address_info->text_start;
+    end = (unsigned long)address_info->text_end;
     length = end - start;
     
     profbuf = (unsigned short *)malloc(length*sizeof(unsigned short));
