@@ -69,7 +69,8 @@ int main(int argc, char** argv) {
     int retval;
     int EventSet = PAPI_NULL;
     long_long values[1];
-    unsigned long start, end, length;
+    long length;
+    caddr_t start, end;
     const PAPI_exe_info_t *prginfo;
     unsigned short *profbuf;
     
