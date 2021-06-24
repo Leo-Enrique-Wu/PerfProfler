@@ -36,4 +36,4 @@ int prof_check(int n, int bucket, int num_buckets);
    Thus, the number of profile buckets is (plength/2) * (scale/65536),
    and the length (in bytes) of the profile buffer is buckets * bucket size.
    */
-unsigned long prof_size(unsigned long plength, unsigned scale, int bucket, int *num_buckets);
+unsigned long prof_size(unsigned long plength, unsigned int scale, int bucket, int *num_buckets);
