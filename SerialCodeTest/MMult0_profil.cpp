@@ -92,6 +92,7 @@ prof_out( caddr_t start, int n, int bucket, int num_buckets,
 				for ( j = 0, buf_16 = 0; j < n; j++ ){
 					printf("j=%d\n", j);
 					printf("buf16[j]=%d\n", buf16[j]);
+					printf("sizeof(buf16[j])=%d\n", sizeof(buf16[j]);
 					buf_16 |= ( buf16[j] )[i];
 				}
 				printf("buf_16=%s\n", (buf_16? "true" : "false"));
