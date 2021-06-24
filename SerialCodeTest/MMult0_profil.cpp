@@ -86,8 +86,12 @@ prof_out( caddr_t start, int n, int bucket, int num_buckets,
 		switch ( bucket ) {
 		case PAPI_PROFIL_BUCKET_16:
 			for ( i = 0; i < num_buckets; i++ ) {
-				for ( j = 0, buf_16 = 0; j < n; j++ )
+				printf("i=%d\n", i);
+				for ( j = 0, buf_16 = 0; j < n; j++ ){
+					printf("j=%d\n", j);
 					buf_16 |= ( buf16[j] )[i];
+				}
+				
 				if ( buf_16 ) {
 /* On 32bit builds with gcc 4.3 gcc complained about casting caddr_t => long long
  * Thus the unsigned long to long long cast */
@@ -317,10 +321,8 @@ int main(int argc, char** argv) {
 	  prof_out( start, 1, bucket, num_buckets, scale, profbuf );
 	  retval = prof_check( 1, bucket, num_buckets, profbuf );
 	  
-	  /*
 	  if (retval < 0)
         handle_error(retval);
-    */
 
     free(a);
     free(b);
