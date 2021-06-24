@@ -316,7 +316,7 @@ int main(int argc, char** argv) {
     printf("%10ld %10f %10f %10f\n", p, time, flops, bandwidth);
     
     prof_head( blength, bucket, num_buckets,
-				   "address\t\t\tflat\trandom\tweight\tcomprs\tall\n" );
+				   "address\t\t\tflat\n" );
 	  prof_out( start, 1, bucket, num_buckets, scale, profbuf );
 	  retval = prof_check( 1, bucket, num_buckets, profbuf );
 	  
