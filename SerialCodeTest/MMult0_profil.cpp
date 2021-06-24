@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
     if ((prginfo = PAPI_get_executable_info()) == NULL)
         handle_error(1);
     
-    PAPI_address_map_t address_info = prginfo->address_info
+    PAPI_address_map_t address_info = prginfo->address_info;
     start = (unsigned long)address_info.text_start;
     end = (unsigned long)address_info.text_end;
     length = end - start;
