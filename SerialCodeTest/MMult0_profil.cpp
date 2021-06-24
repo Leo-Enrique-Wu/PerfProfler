@@ -87,8 +87,8 @@ int main(int argc, char** argv) {
         handle_error(1);
     
     PAPI_address_map_t address_info = prginfo->address_info
-    start = (unsigned long)address_info->text_start;
-    end = (unsigned long)address_info->text_end;
+    start = (unsigned long)address_info.text_start;
+    end = (unsigned long)address_info.text_end;
     length = end - start;
     
     profbuf = (unsigned short *)malloc(length*sizeof(unsigned short));
