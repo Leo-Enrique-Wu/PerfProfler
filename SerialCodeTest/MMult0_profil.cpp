@@ -17,6 +17,33 @@ void handle_error (int retval)
      exit(1);
 }
 
+/* Given the profiling type (16, 32, or 64) this function returns the 
+   bucket size in bytes. NOTE: the bucket size does not ALWAYS correspond
+   to the expected value, esp on architectures like Cray with weird data types.
+   This is necessary because the posix_profile routine in extras.c relies on
+   the data types and sizes produced by the compiler.
+*/
+int
+prof_buckets( int bucket )
+{
+	int bucket_size;
+	switch ( bucket ) {
+	case PAPI_PROFIL_BUCKET_16:
+		bucket_size = sizeof ( short );
+		break;
+	case PAPI_PROFIL_BUCKET_32:
+		bucket_size = sizeof ( int );
+		break;
+	case PAPI_PROFIL_BUCKET_64:
+		bucket_size = sizeof ( unsigned long long );
+		break;
+	default:
+		bucket_size = 0;
+		break;
+	}
+	return ( bucket_size );
+}
+
 // Note: matrices are stored in column major order; i.e. the array elements in
 // the (m x n) matrix C are stored in the sequence: {C_00, C_10, ..., C_m0,
 // C_01, C_11, ..., C_m1, C_02, ..., C_0n, C_1n, ..., C_mn}
