@@ -317,8 +317,10 @@ int main(int argc, char** argv) {
 	  prof_out( start, 1, bucket, num_buckets, scale, profbuf );
 	  retval = prof_check( 1, bucket, num_buckets, profbuf );
 	  
+	  /*
 	  if (retval < 0)
         handle_error(retval);
+    */
 
     free(a);
     free(b);
