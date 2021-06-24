@@ -75,6 +75,11 @@ int main(int argc, char** argv) {
     caddr_t start, end;
     const PAPI_exe_info_t *prginfo;
     unsigned short *profbuf;
+    unsigned long plength;
+    unsigned scale;
+    int bucket;
+    unsigned long blength;
+    int num_buckets;
     
     /* Initialize the PAPI library */
     retval = PAPI_library_init(PAPI_VER_CURRENT);
@@ -94,6 +99,10 @@ int main(int argc, char** argv) {
     end = address_info.text_end;
     length = end - start;
     
+    scale = FULL_SCALE;
+    bucket = PAPI_PROFIL_BUCKET_16;
+    plength = (unsigned long)length;
+    blength = prof_size( plength, scale, bucket, &num_buckets );
     profbuf = (unsigned short *)malloc(length*sizeof(unsigned short));
     
     if (profbuf == NULL)

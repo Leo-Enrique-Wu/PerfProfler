@@ -152,3 +152,23 @@ prof_check( int n, int bucket, int num_buckets )
 	}
 	return ( retval );
 }
+
+/* Computes the length (in bytes) of the buffer required for profiling.
+   'plength' is the profile length, or address range to be profiled.
+   By convention, it is assumed that there are half as many buckets as addresses.
+   The scale factor is a fixed point fraction in which 0xffff = ~1
+                                                         0x8000 = 1/2
+                                                         0x4000 = 1/4, etc.
+   Thus, the number of profile buckets is (plength/2) * (scale/65536),
+   and the length (in bytes) of the profile buffer is buckets * bucket size.
+   */
+unsigned long
+prof_size( unsigned long plength, unsigned scale, int bucket, int *num_buckets )
+{
+	unsigned long blength;
+	long long llength = ( ( long long ) plength * scale );
+	int bucket_size = prof_buckets( bucket );
+	*num_buckets = ( int ) ( llength / 65536 / 2 );
+	blength = ( unsigned long ) ( *num_buckets * bucket_size );
+	return ( blength );
+}
