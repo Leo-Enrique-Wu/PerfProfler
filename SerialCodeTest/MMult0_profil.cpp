@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
     int EventSet = PAPI_NULL;
     long_long values[1];
     unsigned long start, end, length;
-    PAPI_exe_info_t *prginfo;
+    const PAPI_exe_info_t *prginfo;
     unsigned short *profbuf;
     
     /* Initialize the PAPI library */
