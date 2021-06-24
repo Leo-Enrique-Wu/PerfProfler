@@ -91,6 +91,7 @@ prof_out( caddr_t start, int n, int bucket, int num_buckets,
 					printf("j=%d\n", j);
 					buf_16 |= ( buf16[j] )[i];
 				}
+				printf("buf_16=%s\n", (buf_16? "true" : "false"));
 				
 				if ( buf_16 ) {
 /* On 32bit builds with gcc 4.3 gcc complained about casting caddr_t => long long
