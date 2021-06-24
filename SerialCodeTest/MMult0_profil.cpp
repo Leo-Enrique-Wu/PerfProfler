@@ -6,8 +6,10 @@
 // $ g++ -O3 -std=c++11 MMult0.cpp && ./a.out
 
 #include <stdio.h>
-#include "utils.h"
 #include <papi.h>
+
+#include "utils.h"
+#include "prof_utils.h"
 
 void handle_error (int retval)
 {
@@ -130,10 +132,20 @@ int main(int argc, char** argv) {
     double flops = (((2 * m * n * k) * NREPEATS) / 1e9) / time;
     double bandwidth = (((4 * m * n * k) * NREPEATS * sizeof(double)) / 1e9) / time;
     printf("%10ld %10f %10f %10f\n", p, time, flops, bandwidth);
+    
+    prof_head( blength, bucket, num_buckets,
+				   "address\t\t\tflat\trandom\tweight\tcomprs\tall\n" );
+	  prof_out( start, 1, bucket, num_buckets, scale );
+	  retval = prof_check( 1, bucket, num_buckets );
+	  
+	  if (retval < 0)
+        handle_error(retval);
 
     free(a);
     free(b);
     free(c);
+    
+    free(profbuf);
     
   // }
 
