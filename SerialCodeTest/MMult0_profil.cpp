@@ -79,8 +79,6 @@ prof_out( caddr_t start, int n, int bucket, int num_buckets,
 	unsigned short **buf16 = ( unsigned short ** ) profbuf;
 	unsigned int **buf32 = ( unsigned int ** ) profbuf;
 	unsigned long long **buf64 = ( unsigned long long ** ) profbuf;
-	
-	printf("num_buckets=%d\n", num_buckets);
 
 	// if ( !TESTS_QUIET ) {
 		/* printf("%#lx\n",(unsigned long) start + (unsigned long) (2 * i)); */
@@ -324,6 +322,10 @@ int main(int argc, char** argv) {
 	  
 	  if (retval < 0)
         handle_error(retval);
+    
+    /* Remove event */
+    if (PAPI_remove_event(EventSet, PAPI_FP_INS) != PAPI_OK)
+    	handle_error(1);
 
     free(a);
     free(b);
