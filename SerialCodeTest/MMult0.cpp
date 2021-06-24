@@ -43,9 +43,8 @@ void MMult0( long m, long n, long k, double *a,
 
 int main(int argc, char** argv) {
     
-  /*
   const long NREPEATS = 50;
-  
+  /*
   const long PFIRST = 20;
   const long PLAST = 600;
   const long PINC = 20;
