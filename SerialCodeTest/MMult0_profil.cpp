@@ -91,6 +91,7 @@ prof_out( caddr_t start, int n, int bucket, int num_buckets,
 				printf("i=%d\n", i);
 				for ( j = 0, buf_16 = 0; j < n; j++ ){
 					printf("j=%d\n", j);
+					printf("buf16[j]=%d\n", buf16[j]);
 					buf_16 |= ( buf16[j] )[i];
 				}
 				printf("buf_16=%s\n", (buf_16? "true" : "false"));
@@ -294,7 +295,8 @@ int main(int argc, char** argv) {
     if (PAPI_add_event(EventSet, PAPI_FP_INS) != PAPI_OK)
         handle_error(retval);
     
-    if (PAPI_profil(profbuf, length, start, 65536, EventSet, PAPI_FP_INS, 1000000, PAPI_PROFIL_POSIX | PAPI_PROFIL_BUCKET_16) != PAPI_OK)
+    if (PAPI_profil(profbuf, length, start, 65536, EventSet, 
+    	PAPI_FP_INS, 1000000, PAPI_PROFIL_POSIX | PAPI_PROFIL_BUCKET_16) != PAPI_OK)
         handle_error(1);
     
     /* Start counting */
