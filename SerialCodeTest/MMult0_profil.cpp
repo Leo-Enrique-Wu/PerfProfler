@@ -70,7 +70,7 @@ prof_head( unsigned long blength, int bucket, int num_buckets, const char *heade
 */
 void
 prof_out( caddr_t start, int n, int bucket, int num_buckets,
-		  unsigned int scale )
+		  unsigned int scale, unsigned short *profbuf)
 {
 	int i, j;
 	unsigned short buf_16;
@@ -139,7 +139,7 @@ prof_out( caddr_t start, int n, int bucket, int num_buckets,
    failure. Assumes global profbuf[].
 */
 int
-prof_check( int n, int bucket, int num_buckets )
+prof_check( int n, int bucket, int num_buckets, unsigned short *profbuf )
 {
 	int i, j;
 	int retval = 0;
@@ -314,8 +314,8 @@ int main(int argc, char** argv) {
     
     prof_head( blength, bucket, num_buckets,
 				   "address\t\t\tflat\trandom\tweight\tcomprs\tall\n" );
-	  prof_out( start, 1, bucket, num_buckets, scale );
-	  retval = prof_check( 1, bucket, num_buckets );
+	  prof_out( start, 1, bucket, num_buckets, scale, profbuf );
+	  retval = prof_check( 1, bucket, num_buckets, profbuf );
 	  
 	  if (retval < 0)
         handle_error(retval);
