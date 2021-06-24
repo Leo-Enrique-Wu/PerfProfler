@@ -88,15 +88,9 @@ prof_out( caddr_t start, int n, int bucket, int num_buckets,
 		switch ( bucket ) {
 		case PAPI_PROFIL_BUCKET_16:
 			for ( i = 0; i < num_buckets; i++ ) {
-				printf("i=%d\n", i);
 				for ( j = 0, buf_16 = 0; j < n; j++ ){
-					printf("j=%d\n", j);
-					printf("buf16[j]=%d\n", buf16[j]);
-					printf("sizeof(buf16[j])=%d\n", sizeof(buf16[j]));
-					printf("buf16[j][i]=%d\n", buf16[j][i]);
 					buf_16 |= ( buf16[j] )[i];
 				}
-				printf("buf_16=%s\n", (buf_16? "true" : "false"));
 				
 				if ( buf_16 ) {
 /* On 32bit builds with gcc 4.3 gcc complained about casting caddr_t => long long
