@@ -70,7 +70,7 @@ prof_head( unsigned long blength, int bucket, int num_buckets, const char *heade
 */
 void
 prof_out( caddr_t start, int n, int bucket, int num_buckets,
-		  unsigned int scale, unsigned short *profbuf)
+		  unsigned int scale, unsigned short **profbuf)
 {
 	int i, j;
 	unsigned short buf_16;
@@ -149,7 +149,7 @@ prof_out( caddr_t start, int n, int bucket, int num_buckets,
    failure. Assumes global profbuf[].
 */
 int
-prof_check( int n, int bucket, int num_buckets, unsigned short *profbuf )
+prof_check( int n, int bucket, int num_buckets, unsigned short **profbuf )
 {
 	int i, j;
 	int retval = 0;
